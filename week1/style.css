@@ -1,3 +1,7 @@
+.d-none {
+  display: none;
+}
+
 body {
   font-size: 20px;
   padding-bottom: 80px;
@@ -34,6 +38,7 @@ img {
 
 /* header */
 header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,7 +72,7 @@ nav {
   justify-content: center;
   margin-bottom: 40px;
 
-  background-color: rgb(221, 238, 248);
+  background-color: rgb(218, 242, 255);
   font-size: 2rem;
   font-weight: bold;
 }
@@ -87,7 +92,7 @@ nav {
   align-items: center;
   padding: 10px;
 
-  background-color: rgb(204, 221, 232);
+  background-color: rgb(225, 242, 255, 70%);
 }
 
 .img-showcase-sm {
@@ -125,6 +130,7 @@ nav {
 }
 
 .img-showcase .card {
+  position: relative;
   width: calc(100% / 6 - 17px);
   height: 250px;
   flex-direction: column;
@@ -134,13 +140,29 @@ nav {
   flex-grow: 1;
 }
 
-.img-showcase img {
+.img-showcase .card-image img {
   height: 100%;
   object-fit: cover;
 }
 
+.card-favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+}
+
+.card-favorite-icon:hover {
+  cursor: pointer;
+}
+
 .img-showcase .card-title {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
   justify-content: center;
+
+  background-color: rgb(255, 255, 255, 50%);
 }
 
 @media (max-width: 1200px) {
@@ -154,8 +176,29 @@ nav {
 
 @media (max-width: 600px) {
   .menu-list {
-    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+    width: 60vw;
+    height: 100vh;
+    flex-direction: column;
+    gap: 0px;
+
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
   }
+
+  .menu-list a {
+    display: block;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .menu-list a:hover {
+    background-color: rgb(244, 244, 244);
+  }
+
   .menu-icon {
     display: block;
   }
