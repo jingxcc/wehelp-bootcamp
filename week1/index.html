@@ -6,20 +6,21 @@
     <title>WeHelp week1</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
+    <script defer src="all.js"></script>
   </head>
   <body>
     <header>
       <h1>My Website</h1>
-      <nav>
-        <ul class="menu-list">
+      <nav id="dropdown" class="dropdown">
+        <ul id="dropdownMenu" class="dropdown-menu">
           <li><a href="#">Item 1</a></li>
           <li><a href="#">Item 2</a></li>
           <li><a href="#">Item 3</a></li>
           <li><a href="#">Item 4</a></li>
         </ul>
-        <a href="#" class="menu-icon"
-          ><img src="./img/hamburger.svg" alt="hamburger icon"
-        /></a>
+        <a href="#" class="dropdown-icon" onclick="showDropdownMenu();">
+          <img src="./img/hamburger.svg" alt="hamburger icon" />
+        </a>
       </nav>
     </header>
     <div class="welcome"><h2>Welcome to MyHome</h2></div>
