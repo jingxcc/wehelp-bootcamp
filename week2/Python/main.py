@@ -158,24 +158,17 @@ print_task("Task 5")
 def find_index_of_car(seats, status, number):
     # your code here
     # find cars are available
-    car_available = []
-    for stat_idx, stat in enumerate(status):
-        if stat == 1:
-            # car_available.append(stat_idx)
-            car_available += [stat_idx]
-    print(car_available)
+    car_available = [idx for idx, stat in enumerate(status) if stat == 1]
 
     # find the most suitable car
+    min_gap = float("inf")
     car_fit = -1
     for car in car_available:
-        if seats[car] >= number:
-            if car_fit == -1:
-                min_gap = seats[car] - number
-                car_fit = car
-            else:
-                if (min_gap) > seats[car] - number:
-                    min_gap = seats[car] - number
-                    car_fit = car
+        gap = seats[car] - number
+        if gap >= 0 and gap < min_gap:
+            min_gap = gap
+            car_fit = car
+
     print(car_fit)
 
 

@@ -163,16 +163,12 @@ function findIndexOfCar(seats, status, number) {
   // find the most suitable car
   let minGap;
   let carFit = -1;
-  carAvailable.map((car) => {
-    if (seats[car] >= number) {
-      if (carFit == -1) {
-        minGap = seats[car] - number;
+  carAvailable.forEach((car) => {
+    gap = seats[car] - number;
+    if (gap >= 0) {
+      if (carFit === -1 || minGap > gap) {
+        minGap = gap;
         carFit = car;
-      } else {
-        if (minGap > seats[car] - number) {
-          minGap = seats[car] - number;
-          carFit = car;
-        }
       }
     }
   });
