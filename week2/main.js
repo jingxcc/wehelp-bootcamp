@@ -148,4 +148,36 @@ getNumber(5); // print 10
 getNumber(10); // print 15
 
 // Optional
-// printTask("Task 5");
+printTask("Task 5");
+
+function findIndexOfCar(seats, status, number) {
+  // your code here
+  // find cars are available
+  let carAvailable = [];
+  status.map((stat, statIdx) => {
+    if (stat) {
+      carAvailable.push(statIdx);
+    }
+  });
+
+  // find the most suitable car
+  let minGap;
+  let carFit = -1;
+  carAvailable.map((car) => {
+    if (seats[car] >= number) {
+      if (carFit == -1) {
+        minGap = seats[car] - number;
+        carFit = car;
+      } else {
+        if (minGap > seats[car] - number) {
+          minGap = seats[car] - number;
+          carFit = car;
+        }
+      }
+    }
+  });
+  console.log(carFit);
+}
+findIndexOfCar([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2); // print 4
+findIndexOfCar([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4); // print -1
+findIndexOfCar([4, 6, 5, 8], [0, 1, 1, 1], 4); // print 2
