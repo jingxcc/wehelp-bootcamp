@@ -1,13 +1,13 @@
-# print color in Terminal
-colorBlue = "\033[104m"
-colorEnd = "\033[0m"
+# ANSI color in Terminal
+COLOR_BLUE = "\033[104m"
+COLOR_END = "\033[0m"
 
 
-def printTask(taskName):
-    print(f"{colorBlue}=== {taskName} ==={colorEnd}")
+def print_task(task_name):
+    print(f"{COLOR_BLUE}=== {task_name} ==={COLOR_END}")
 
 
-printTask("Task 1")
+print_task("Task 1")
 
 
 def find_and_print(messages):
@@ -38,7 +38,7 @@ find_and_print(
     }
 )
 
-printTask("Task 2")
+print_task("Task 2")
 
 
 def calculate_sum_of_bonus(data):
@@ -59,8 +59,8 @@ def calculate_sum_of_bonus(data):
             "average": 1,
             "below average": 0.8,
         }
-        bonusTotalSpent = 0
-        weightTotal = 0
+        bonus_total = 0
+        weight_total = 0
 
         # process data
         salaryStr = str(employee["salary"]).replace(",", "")
@@ -86,9 +86,9 @@ def calculate_sum_of_bonus(data):
         employee["weight"] = (
             PERFORM_POINTS[employee["performance"]] * employee["salary"] / 10000
         )
-        weightTotal += employee["weight"]
-    bonusTotalSpent = int(int(BONUS_LIMIT / weightTotal) * weightTotal)
-    print(bonusTotalSpent)
+        weight_total += employee["weight"]
+    bonus_total = int(int(BONUS_LIMIT / weight_total) * weight_total)
+    print(bonus_total)
 
 
 calculate_sum_of_bonus(
@@ -111,22 +111,22 @@ calculate_sum_of_bonus(
     }
 )  # call calculate_sum_of_bonus function
 
-printTask("Task 3")
+print_task("Task 3")
 
 
 def func(*data):
     # your code here
-    midNameCount = {}
+    mid_name_count = {}
     for name in data:
-        if name[1:2] in midNameCount:
-            midNameCount[name[1:2]] += 1
+        if name[1:2] in mid_name_count:
+            mid_name_count[name[1:2]] += 1
         else:
-            midNameCount[name[1:2]] = 1
+            mid_name_count[name[1:2]] = 1
 
-    uniqueMidName = [n for n in midNameCount if midNameCount[n] == 1]
-    if len(uniqueMidName):
+    unique_mid_name = [n for n in mid_name_count if mid_name_count[n] == 1]
+    if len(unique_mid_name):
         for name in data:
-            if name[1:2] in uniqueMidName:
+            if name[1:2] in unique_mid_name:
                 print(name)
     else:
         print("沒有")
@@ -137,7 +137,7 @@ func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花")  # print �
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花")  # print 沒有
 
 
-printTask("Task 4")
+print_task("Task 4")
 
 
 def get_number(index):
@@ -152,31 +152,31 @@ get_number(10)  # print 15
 
 
 # Optional
-printTask("Task 5")
+print_task("Task 5")
 
 
 def find_index_of_car(seats, status, number):
     # your code here
     # find cars are available
-    carAvailable = []
-    for statIdx, stat in enumerate(status):
+    car_available = []
+    for stat_idx, stat in enumerate(status):
         if stat == 1:
-            # carAvailable.append(statIdx)
-            carAvailable += [statIdx]
-    print(carAvailable)
+            # car_available.append(stat_idx)
+            car_available += [stat_idx]
+    print(car_available)
 
     # find the most suitable car
-    carFit = -1
-    for car in carAvailable:
+    car_fit = -1
+    for car in car_available:
         if seats[car] >= number:
-            if carFit == -1:
-                minGap = seats[car] - number
-                carFit = car
+            if car_fit == -1:
+                min_gap = seats[car] - number
+                car_fit = car
             else:
-                if (minGap) > seats[car] - number:
-                    minGap = seats[car] - number
-                    carFit = car
-    print(carFit)
+                if (min_gap) > seats[car] - number:
+                    min_gap = seats[car] - number
+                    car_fit = car
+    print(car_fit)
 
 
 find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2)  # print 4
