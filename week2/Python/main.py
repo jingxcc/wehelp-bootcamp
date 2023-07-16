@@ -37,6 +37,19 @@ find_and_print(
         "Jenny": "Good morning.",
     }
 )
+print("--- test ---")
+find_and_print(
+    {
+        "Bob": "My name is Bob. I'm 18 years old.",
+        "Mary": "Hello, glad to meet you.",
+        "Copper": "I'm a college student. Nice to meet you.",
+        "Leslie": "I am of legal age in Taiwan.",
+        "Vivian": "I will vote for Donald Trump next week",
+        "Jenny": "Good morning.",
+        "test1": "hhhh",
+        "test2": "vote for teens",
+    }
+)
 
 print_task("Task 2")
 
@@ -103,7 +116,29 @@ calculate_sum_of_bonus(
             {"name": "Bob", "salary": 60000, "performance": "average", "role": "CEO"},
             {
                 "name": "Jenny",
-                "salary": "50,000",
+                "salary": "40,000",
+                "performance": "below average",
+                "role": "Sales",
+            },
+        ]
+    }
+)  # call calculate_sum_of_bonus function
+
+print("--- test ---")
+
+calculate_sum_of_bonus(
+    {
+        "employees": [
+            {
+                "name": "John",
+                "salary": "1000USD",
+                "performance": "above average",
+                "role": "Engineer",
+            },
+            {"name": "Bob", "salary": 60000, "performance": "average", "role": "CEO"},
+            {
+                "name": "test2",
+                "salary": "500USD",
                 "performance": "below average",
                 "role": "Sales",
             },
@@ -133,8 +168,10 @@ def func(*data):
 
 
 func("彭⼤牆", "王明雅", "吳明")  # print 彭⼤牆
-func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花")  # print 林花 花
+func("郭靜雅", "王立強", "林靜宜", "郭立恆", "林花花")  # print 林花花
 func("郭宣雅", "林靜宜", "郭宣恆", "林靜花")  # print 沒有
+print("--- test ---")
+func("郭宣雅", "林靜宜", "郭宣恆", "林靜花", "林小花", "林阿花")  # print "林小花", "林阿花"
 
 
 print_task("Task 4")
@@ -175,3 +212,6 @@ def find_index_of_car(seats, status, number):
 find_index_of_car([3, 1, 5, 4, 2], [0, 1, 0, 1, 1], 2)  # print 4
 find_index_of_car([1, 0, 5, 1, 3], [0, 1, 0, 1, 1], 4)  # print -1
 find_index_of_car([4, 6, 5, 8], [0, 1, 1, 1], 4)  # print 2
+
+print("--- test ---")
+find_index_of_car([2, 4, 3, 5], [0, 1, 1, 1], 3)  # print 2
