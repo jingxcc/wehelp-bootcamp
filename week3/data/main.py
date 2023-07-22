@@ -4,7 +4,7 @@ import urllib.request as req
 import re
 
 
-def find_image_url(text):
+def get_image_url(text):
     pattern_img = r"https?://[^\s]*\.(?:jpg|JPG)\b"
     urls = re.split(r"(?=http)", text)
     for url in urls:
@@ -65,7 +65,7 @@ result_districts = [item for item in result if item["district"]]
 for item in result_districts:
     file = item["file"]
     if file != None:
-        image_url = find_image_url(file)
+        image_url = get_image_url(file)
         item["image"] = image_url
 
 # process data: mrt_data, data group by mtr

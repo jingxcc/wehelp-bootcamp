@@ -14,6 +14,5 @@ dropdownMenu.addEventListener("click", (e) => {
 });
 
 function showDropdownMenu() {
-  // let element = document.querySelector("#dropdown");
   dropdownMenu.classList.add("show");
 }
