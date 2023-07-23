@@ -84,7 +84,7 @@ for item in result_districts:
         mrt_data[item["MRT"]].append(item["stitle"])
 
 # write attraction.csv
-with open("attraction.csv", mode="w", newline="", encoding="utf-8") as file:
+with open("attractions.csv", mode="w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     for item in result_districts:
         row = [
