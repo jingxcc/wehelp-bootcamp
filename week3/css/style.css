@@ -73,7 +73,11 @@ nav {
   font-weight: bold;
 }
 
-/* .content */
+/* content */
+.content {
+  text-align: center;
+}
+
 .card {
   display: flex;
   flex: auto;
@@ -159,6 +163,19 @@ nav {
   justify-content: center;
 
   background-color: rgb(255, 255, 255, 50%);
+}
+
+.showcase-more-btn {
+  display: inline;
+  text-align: center;
+  padding: 16px 36px;
+  background-color: #e3e3e3;
+  border: 1px solid rgb(206, 206, 206);
+}
+
+.showcase-more-btn:hover {
+  background-color: rgb(206, 206, 206);
+  cursor: pointer;
 }
 
 @media (max-width: 1200px) {

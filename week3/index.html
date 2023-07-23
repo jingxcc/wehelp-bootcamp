@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WeHelp week1</title>
+    <title>WeHelp week3</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <script defer src="getAttractions.js"></script>
+    <script defer src="addAttractions.js"></script>
     <script defer src="dropDown.js"></script>
   </head>
   <body>
@@ -28,7 +28,13 @@
     <div class="content container">
       <div id="img-showcase-sm" class="img-showcase-sm"></div>
       <div id="img-showcase" class="img-showcase"></div>
+      <button
+        id="showcase-more-btn"
+        class="showcase-more-btn"
+        onClick="addShowCase()"
+      >
+        Load More
+      </button>
     </div>
-    <div class="div1"></div>
   </body>
 </html>
