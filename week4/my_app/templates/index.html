@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../static/reset.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Website</h1>
+    </header>
+
+    <div class="container sign-in">
+      <form
+        action=""
+        method="post"
+        name="signIn"
+        onsubmit="return checkAgreePolicy()"
+      >
+        <div class="welcome">Welcome</div>
+        <h2 class="sign-in-text">Sign In</h2>
+        <label for="username">User Name</label>
+        <input type="text" name="username" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" required />
+        <label class="policy-agree">
+          <input type="checkbox" name="policy" />
+          Agree Policy
+        </label>
+        <input class="button" type="submit" value="Log In" />
+      </form>
+    </div>
+  </body>
+  <script>
+    const checkAgreePolicy = () => {
+      let isChecked = document.forms["signIn"]["policy"].checked;
+      if (!isChecked) {
+        alert("Please check the checkbox first !");
+        return false;
+      }
+    };
+  </script>
+</html>
