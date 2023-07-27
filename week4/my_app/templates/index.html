@@ -9,11 +9,12 @@
   </head>
   <body>
     <header>
-      <h1>My Website</h1>
+      <h1><a href="/" class="d-block">My Website</a></h1>
+      <nav></nav>
     </header>
 
     <div class="welcome page-title">Welcome</div>
-    <div class="container auth">
+    <div class="container box mb-80">
       <form
         action="/signin"
         method="post"
@@ -33,6 +34,17 @@
         <input class="button" type="submit" value="Sign In" />
       </form>
     </div>
+
+    <div class="container box">
+      <form name="square" onsubmit="return checkPositiveInt()">
+        <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
+        <label for="positiveInt">Positive Integer</label>
+        <input type="text" name="positiveInt" />
+        <!-- <input type="text" name="positiveInt" required /> -->
+
+        <input class="button" type="submit" value="Calculate" />
+      </form>
+    </div>
   </body>
   <script>
     const checkAgreePolicy = () => {
@@ -40,6 +52,21 @@
       if (!isChecked) {
         alert("Please check the checkbox first !");
         return false;
+      }
+    };
+
+    const checkPositiveInt = () => {
+      let intValue = document.forms["square"]["positiveInt"].value;
+
+      if (intValue <= 0) {
+        alert("Please enter a positive number !");
+        // console.dir(document.forms["square"]["positiveInt"]);
+        return false;
+      } else {
+        // document.forms["square"]["action"] = `/square/${intValue}`;
+        document.forms["square"]["action"] = {{csc}};
+        // document.forms["square"].setAttributes["action"] += intValue;
+        // console.log(document.forms["square"]["action"]);
       }
     };
   </script>

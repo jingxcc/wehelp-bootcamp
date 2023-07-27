@@ -1,18 +1,11 @@
-# import sys as system
-# print(system.path)
-
-
 from flask import Flask
 from flask import flash, redirect, render_template, url_for, request, session
 
-# from flask import Blueprint
-# bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 app = Flask("__name__")
 app.secret_key = "869b72a2df6d7d64f28aa1adfea15d19e98130ea9a94726382f0bbc2e13cacdd"
 
 
-# @bp.route("/register", methods=("GET", "POST"))
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -35,7 +28,7 @@ def signin():
             return redirect(url_for("error", message=error_msg))
 
 
-@app.route("/signout/", methods=("GET", "POST"))
+@app.route("/signout/")
 def signout():
     session["SIGN-IN"] = "FALSE"
     return redirect(url_for("index"))
@@ -53,3 +46,10 @@ def member():
 def error():
     msg = request.args.get("message")
     return render_template("auth/error.html", msg=msg)
+
+
+@app.route("/square/")
+@app.route("/square/<positiveInt>/")
+def square(positiveInt):
+    result = int(positiveInt) ** 2
+    return render_template("calculation/square.html", result=result)

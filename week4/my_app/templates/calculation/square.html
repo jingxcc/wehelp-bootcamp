@@ -12,12 +12,10 @@
       <h1><a href="/" class="d-block">My Website</a></h1>
     </header>
 
-    <div class="page-title">Sign-in Fails</div>
-    <div class="container auth">
-      {% if msg %}
-      <h2 class="text-center">{{msg}}</h2>
-      {% else %}
-      <h2 class="text-center">Undefined Error</h2>
+    <div class="page-title">Squared Number Page</div>
+    <div class="container auth text-center">
+      {% if result %}
+      <h2 class="text-center">{{result}}</h2>
       {% endif %}
     </div>
   </body>

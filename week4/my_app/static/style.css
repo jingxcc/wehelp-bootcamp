@@ -1,7 +1,15 @@
 /* --- utils --- */
 
+.d-block {
+  display: block;
+}
+
 .text-center {
   text-align: center;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
 }
 
 /* --- base --- */
@@ -14,7 +22,7 @@ body {
 *::after,
 *::before {
   box-sizing: border-box;
-  /* outline: 1px solid orange; */
+  outline: 1px solid orange;
 }
 
 a {
@@ -65,7 +73,7 @@ h2 {
 /* --- main --- */
 
 /* auth  */
-.auth {
+.box {
   width: 50%;
   padding: 20px;
 
@@ -81,7 +89,7 @@ h2 {
   }
 }
 
-.auth * {
+.box > * {
   margin: 8px 0px;
 }
 
