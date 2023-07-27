@@ -1,10 +1,9 @@
 # import sys as system
 # print(system.path)
 
-import functools
 
 from flask import Flask
-from flask import flash, redirect, render_template, url_for
+from flask import flash, redirect, render_template, url_for, request
 
 # from flask import Blueprint
 # bp = Blueprint("auth", __name__, url_prefix="/auth")
@@ -18,31 +17,28 @@ def index():
     return render_template("index.html")
 
 
-# @app.route("/")
-# def index():
-#     # return "Index Page"
-#     return redirect(url_for("login"))
+@app.route("/signin/", methods=("GET", "POST"))
+def signin():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == "test" and password == "test":
+            return redirect(url_for("member"))
+        elif (not username) or (not password):
+            error_msg = "Please enter username and password"
+            return redirect(url_for("error", message=error_msg))
+        else:
+            error_msg = "Username or password is not correct"
+            return redirect(url_for("error", message=error_msg))
 
 
-# @app.route("/login/")
-# def login():
-#     return "login"
+@app.route("/member/")
+def member():
+    return render_template("auth/member.html")
 
 
-# @app.route("/hello/")
-# @app.route("/hello/<name>")
-# def hello(name=None):
-#     # return "<h1>Hello World !</h1>"
-#     return render_template("index.html", name=name)
-
-# from markupsafe import escape
-# @app.route("/user/<name>/")
-# def profile(name):
-#     return f"<h1>Hello, {escape(name)}!</h1>"
-
-
-# with app.test_request_context():
-#     print(url_for("index"))
-#     print(url_for("login"))
-#     print(url_for("hello"))
-#     print(url_for("hello", name="Jing"))
+@app.route("/error")
+def error():
+    msg = request.args.get("message")
+    return render_template("auth/error.html", msg=msg)
