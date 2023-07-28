@@ -6,6 +6,7 @@
     <title>My Website</title>
     <link rel="stylesheet" href="../static/reset.css" />
     <link rel="stylesheet" href="../static/style.css" />
+    <script defer src="../static/main.js"></script>
   </head>
   <body>
     <header>
@@ -19,7 +20,7 @@
         action="/signin"
         method="post"
         name="signIn"
-        onsubmit="return checkAgreePolicy()"
+        onsubmit="return checkAgreePolicy(e)"
       >
         <h2 class="text-center">Sign In</h2>
         <label for="username">User Name</label>
@@ -36,38 +37,23 @@
     </div>
 
     <div class="container box">
-      <form name="square" onsubmit="return checkPositiveInt()">
-        <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
-        <label for="positiveInt">Positive Integer</label>
-        <input type="text" name="positiveInt" />
-        <!-- <input type="text" name="positiveInt" required /> -->
+      <!-- <form name="square" onsubmit="return checkPositiveInt()"> -->
+      <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
+      <label for="positiveInt">Positive Integer</label>
+      <input id="positiveInt" type="text" name="positiveInt" />
+      <!-- <input type="text" name="positiveInt" required /> -->
 
-        <input class="button" type="submit" value="Calculate" />
-      </form>
+      <input
+        class="button"
+        type="submit"
+        value="Calculate"
+        onclick="checkPositiveInt()"
+      />
+      <!-- </form> -->
     </div>
   </body>
   <script>
-    const checkAgreePolicy = () => {
-      let isChecked = document.forms["signIn"]["policy"].checked;
-      if (!isChecked) {
-        alert("Please check the checkbox first !");
-        return false;
-      }
-    };
-
-    const checkPositiveInt = () => {
-      let intValue = document.forms["square"]["positiveInt"].value;
-
-      if (intValue <= 0) {
-        alert("Please enter a positive number !");
-        // console.dir(document.forms["square"]["positiveInt"]);
-        return false;
-      } else {
-        // document.forms["square"]["action"] = `/square/${intValue}`;
-        document.forms["square"]["action"] = {{csc}};
-        // document.forms["square"].setAttributes["action"] += intValue;
-        // console.log(document.forms["square"]["action"]);
-      }
-    };
+    const graphURL = {{ url_for('main.graph') }};
+    console.log(graphURL)
   </script>
 </html>
