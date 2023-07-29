@@ -8,8 +8,8 @@
   text-align: center;
 }
 
-.mb-80 {
-  margin-bottom: 80px;
+.mb-40 {
+  margin-bottom: 40px;
 }
 
 /* --- base --- */
@@ -22,7 +22,7 @@ body {
 *::after,
 *::before {
   box-sizing: border-box;
-  outline: 1px solid orange;
+  /* outline: 1px solid orange; */
 }
 
 a {
@@ -38,8 +38,9 @@ img {
 }
 
 .container {
-  margin: 0 auto;
   width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 
   background-color: #fff;
 
@@ -128,7 +129,8 @@ label.policy-agree {
 
 .button {
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 16px 40px;
   border: 1px solid rgb(206, 206, 206);
   background-color: #e3e3e3;

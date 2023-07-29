@@ -11,16 +11,15 @@
   <body>
     <header>
       <h1><a href="/" class="d-block">My Website</a></h1>
-      <nav></nav>
     </header>
-
     <div class="welcome page-title">Welcome</div>
-    <div class="container box mb-80">
+
+    <div class="container box mb-40">
       <form
         action="/signin"
         method="post"
         name="signIn"
-        onsubmit="return checkAgreePolicy(e)"
+        onsubmit="return checkAgreePolicy()"
       >
         <h2 class="text-center">Sign In</h2>
         <label for="username">User Name</label>
@@ -37,23 +36,31 @@
     </div>
 
     <div class="container box">
-      <!-- <form name="square" onsubmit="return checkPositiveInt()"> -->
-      <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
-      <label for="positiveInt">Positive Integer</label>
-      <input id="positiveInt" type="text" name="positiveInt" />
-      <!-- <input type="text" name="positiveInt" required /> -->
-
-      <input
-        class="button"
-        type="submit"
-        value="Calculate"
-        onclick="checkPositiveInt()"
-      />
-      <!-- </form> -->
+      <form name="square" onsubmit="redirectSquare()">
+        <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
+        <label for="positiveInt">Positive Integer</label>
+        <input id="positiveInt" type="text" name="positiveInt" />
+        <input class="button" type="submit" value="Calculate" />
+      </form>
     </div>
   </body>
   <script>
-    const graphURL = {{ url_for('main.graph') }};
-    console.log(graphURL)
+    const redirectSquare = () => {
+      event.preventDefault();
+      const positiveInt = document.getElementById("positiveInt");
+      let intValue = parseFloat(positiveInt.value);
+
+      if (intValue <= 0 || !Number.isInteger(intValue)) {
+        alert("Please enter a positive number !");
+      } else {
+        const SCRIPT_ROOT = {{ request.script_root|tojson }};
+        let square_url = `${SCRIPT_ROOT}/square/${intValue}`;
+        fetch(square_url).then((response) => {
+          if (response.redirected) {
+            window.location = response.url;
+          }
+        });
+      };
+    };
   </script>
 </html>

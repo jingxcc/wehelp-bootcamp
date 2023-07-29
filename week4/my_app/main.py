@@ -49,7 +49,10 @@ def error():
 
 
 @app.route("/square/")
-@app.route("/square/<positive_num>/")
-def square(positive_num):
-    result = int(positive_num) ** 2
-    return render_template("calculation/square.html", result=result)
+@app.route("/square/<positive_int>/")
+def square(positive_int=None):
+    if positive_int:
+        result = int(positive_int) ** 2
+        return render_template("calculation/square.html", result=result)
+    else:
+        return redirect(url_for("index"))
