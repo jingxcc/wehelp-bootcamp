@@ -32,6 +32,7 @@
           Agree Policy
         </label>
         <input class="button" type="submit" value="Sign In" />
+        <p>Session: {{session["SIGN-IN"]}}</p>
       </form>
     </div>
 
@@ -50,16 +51,12 @@
       const positiveInt = document.getElementById("positiveInt");
       let intValue = parseFloat(positiveInt.value);
 
-      if (intValue <= 0 || !Number.isInteger(intValue)) {
-        alert("Please enter a positive number !");
-      } else {
+      if (intValue > 0 && Number.isInteger(intValue)){
         const SCRIPT_ROOT = {{ request.script_root|tojson }};
         let square_url = `${SCRIPT_ROOT}/square/${intValue}`;
-        fetch(square_url).then((response) => {
-          if (response.redirected) {
-            window.location = response.url;
-          }
-        });
+        window.location = square_url;
+      } else {
+        alert("Please enter a positive number !");
       };
     };
   </script>

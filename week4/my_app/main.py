@@ -11,30 +11,30 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/signin/", methods=("GET", "POST"))
+@app.route("/signin", methods=["POST"])
 def signin():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+    username = request.form["username"]
+    password = request.form["password"]
 
-        if username == "test" and password == "test":
-            session["SIGN-IN"] = "TRUE"
-            return redirect(url_for("member"))
-        elif (not username) or (not password):
-            error_msg = "Please enter username and password"
-            return redirect(url_for("error", message=error_msg))
-        else:
-            error_msg = "Username or password is not correct"
-            return redirect(url_for("error", message=error_msg))
+    if username == "test" and password == "test":
+        session["SIGN-IN"] = "TRUE"
+        return redirect(url_for("member"))
+    elif (not username) or (not password):
+        error_msg = "Please enter username and password"
+        return redirect(url_for("error", message=error_msg))
+    else:
+        error_msg = "Username or password is not correct"
+        return redirect(url_for("error", message=error_msg))
 
 
-@app.route("/signout/")
+# @app.route("/signout/")
+@app.route("/signout")
 def signout():
     session["SIGN-IN"] = "FALSE"
     return redirect(url_for("index"))
 
 
-@app.route("/member/")
+@app.route("/member")
 def member():
     if session["SIGN-IN"] == "TRUE":
         return render_template("auth/member.html")
@@ -48,11 +48,18 @@ def error():
     return render_template("auth/error.html", msg=msg)
 
 
-@app.route("/square/")
-@app.route("/square/<positive_int>/")
-def square(positive_int=None):
+# @app.route("/square/")
+# @app.route("/square/<positive_int>/")
+@app.route("/square")
+@app.route("/square/<positive_int>")
+def square(positive_int):
     if positive_int:
         result = int(positive_int) ** 2
         return render_template("calculation/square.html", result=result)
     else:
         return redirect(url_for("index"))
+
+
+if __name__ == "__main__":
+    # app.run(debug=False)
+    app.run(debug=True)
