@@ -37,7 +37,7 @@
     </div>
 
     <div class="container box">
-      <form name="square" onsubmit="redirectSquare()">
+      <form name="square" onsubmit="redirectSquare(event)">
         <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
         <label for="positiveInt">Positive Integer</label>
         <input id="positiveInt" type="text" name="positiveInt" />
@@ -46,18 +46,20 @@
     </div>
   </body>
   <script>
-    const redirectSquare = () => {
+    const redirectSquare = (event) => {
       event.preventDefault();
+      console.log(event);
       const positiveInt = document.getElementById("positiveInt");
-      let intValue = parseFloat(positiveInt.value);
+      const intValue = parseFloat(positiveInt.value);
 
-      if (intValue > 0 && Number.isInteger(intValue)){
-        const SCRIPT_ROOT = {{ request.script_root|tojson }};
-        let square_url = `${SCRIPT_ROOT}/square/${intValue}`;
-        window.location = square_url;
+      if (intValue > 0 && Number.isInteger(intValue)) {
+        const rootUrl = window.location.origin;
+        let squareUrl = `${rootUrl}/square/${intValue}`;
+        alert(squareUrl);
+        window.location = squareUrl;
       } else {
         alert("Please enter a positive number !");
-      };
+      }
     };
   </script>
 </html>
