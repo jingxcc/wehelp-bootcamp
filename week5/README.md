@@ -38,10 +38,12 @@ WHERE username = 'test';
 
 1. INSERT
    ![image](./screenshots/3_1_insert.PNG)
-2. SELECT
+   
+3. SELECT
    ![image](./screenshots/3_2_select_all.PNG)
    ![image](./screenshots/3_3_select_limit_where.PNG)
-3. UPDATE
+   
+5. UPDATE
    ![image](./screenshots/3_4_update.PNG)
 
 ## 要求四：SQL Aggregate Functions
@@ -106,5 +108,6 @@ GROUP BY member.name;
 1. CREATE TABLE: also add some testing data
    ![image](./screenshots/5_1_create.PNG)
    ![image](./screenshots/5_2_insert.PNG)
-2. JOIN
+   
+3. JOIN
    ![image](./screenshots/5_3_join.PNG)
