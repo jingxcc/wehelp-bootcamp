@@ -36,15 +36,15 @@ WHERE username = 'test';
 
 **執行畫面**
 
-1. INSERT
-   ![image](./screenshots/3_1_insert.PNG)
+1. INSERT\
+![image](./screenshots/3_1_insert.PNG)
    
-3. SELECT
-   ![image](./screenshots/3_2_select_all.PNG)
-   ![image](./screenshots/3_3_select_limit_where.PNG)
+2. SELECT\
+![image](./screenshots/3_2_select_all.PNG)
+![image](./screenshots/3_3_select_limit_where.PNG)
    
-5. UPDATE
-   ![image](./screenshots/3_4_update.PNG)
+3. UPDATE\
+![image](./screenshots/3_4_update.PNG)
 
 ## 要求四：SQL Aggregate Functions
 
@@ -57,7 +57,7 @@ SELECT SUM(follower_count) FROM member;
 SELECT AVG(follower_count) FROM member;
 ```
 
-**執行畫面**
+**執行畫面**\
 ![image](./screenshots/4_1_Aggregate.PNG)
 
 ## 要求五：SQL JOIN
@@ -105,9 +105,9 @@ GROUP BY member.name;
 
 **執行畫面**
 
-1. CREATE TABLE: also add some testing data
-   ![image](./screenshots/5_1_create.PNG)
-   ![image](./screenshots/5_2_insert.PNG)
+1. CREATE TABLE: also add some testing data\
+![image](./screenshots/5_1_create.PNG)
+![image](./screenshots/5_2_insert.PNG)
    
-3. JOIN
-   ![image](./screenshots/5_3_join.PNG)
+2. JOIN\
+![image](./screenshots/5_3_join.PNG)
