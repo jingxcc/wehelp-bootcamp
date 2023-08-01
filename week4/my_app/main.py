@@ -29,10 +29,13 @@ def signin():
 
 
 # @app.route("/signout/")
-@app.route("/signout", strict_slashes=False)
+@app.route("/signout")
+# @app.route("/signout", strict_slashes=False)
 def signout():
     session["SIGN-IN"] = "FALSE"
-    return redirect(url_for("index"))
+    return render_template("auth/test_signout.html")
+
+    # return redirect(url_for("index"))
 
 
 @app.route("/member")
