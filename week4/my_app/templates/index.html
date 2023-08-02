@@ -48,14 +48,12 @@
   <script>
     const redirectSquare = (event) => {
       event.preventDefault();
-      console.log(event);
       const positiveInt = document.getElementById("positiveInt");
       const intValue = parseFloat(positiveInt.value);
 
       if (intValue > 0 && Number.isInteger(intValue)) {
         const rootUrl = window.location.origin;
         let squareUrl = `${rootUrl}/square/${intValue}`;
-        alert(squareUrl);
         window.location = squareUrl;
       } else {
         alert("Please enter a positive number !");

@@ -1,10 +1,9 @@
 from flask import Flask
-from flask import flash, redirect, render_template, url_for, request, session
+from flask import redirect, render_template, url_for, request, session
 
 
 app = Flask("__name__")
 app.secret_key = "869b72a2df6d7d64f28aa1adfea15d19e98130ea9a94726382f0bbc2e13cacdd"
-# app.url_map.strict_slashes = False
 
 
 @app.route("/")
@@ -28,14 +27,10 @@ def signin():
         return redirect(url_for("error", message=error_msg))
 
 
-# @app.route("/signout/")
 @app.route("/signout")
-# @app.route("/signout", strict_slashes=False)
 def signout():
     session["SIGN-IN"] = "FALSE"
-    return render_template("auth/test_signout.html")
-
-    # return redirect(url_for("index"))
+    return redirect(url_for("index"))
 
 
 @app.route("/member")
@@ -52,8 +47,8 @@ def error():
     return render_template("auth/error.html", msg=msg)
 
 
-@app.route("/square", strict_slashes=False)
-@app.route("/square/<int:positive_int>", strict_slashes=False)
+@app.route("/square")
+@app.route("/square/<int:positive_int>")
 def square(positive_int):
     if positive_int:
         result = int(positive_int) ** 2
