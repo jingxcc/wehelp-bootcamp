@@ -29,7 +29,8 @@ CREATE TABLE `member` (
   `password` varchar(255) NOT NULL COMMENT '帳戶密碼',
   `follower_count` int unsigned NOT NULL DEFAULT '0' COMMENT '追蹤者數量',
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '註冊時間',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `member_idx1` (`username`,`password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-02  0:59:53
+-- Dump completed on 2023-08-06  0:07:42

@@ -37,14 +37,12 @@ WHERE username = 'test';
 **執行畫面**
 
 1. INSERT\
-![image](./screenshots/3_1_insert.PNG)
-   
+   ![image](./screenshots/3_1_insert.PNG)
 2. SELECT\
-![image](./screenshots/3_2_select_all.PNG)
-![image](./screenshots/3_3_select_limit_where.PNG)
-   
+   ![image](./screenshots/3_2_select_all.PNG)
+   ![image](./screenshots/3_3_select_limit_where.PNG)
 3. UPDATE\
-![image](./screenshots/3_4_update.PNG)
+   ![image](./screenshots/3_4_update.PNG)
 
 ## 要求四：SQL Aggregate Functions
 
@@ -106,8 +104,24 @@ GROUP BY member.name;
 **執行畫面**
 
 1. CREATE TABLE: also add some testing data\
-![image](./screenshots/5_1_create.PNG)
-![image](./screenshots/5_2_insert.PNG)
-   
+   ![image](./screenshots/5_1_create.PNG)
+   ![image](./screenshots/5_2_insert.PNG)
 2. JOIN\
-![image](./screenshots/5_3_join.PNG)
+   ![image](./screenshots/5_3_join.PNG)
+
+## 加碼：INDEX 執行效率
+
+```sql =
+EXPLAIN SELECT * FROM member
+WHERE username = 'test' and password = 'test';
+
+ALTER TABLE member ADD INDEX member_idx1(username, password);
+
+EXPLAIN SELECT * FROM member
+WHERE username = 'test' and password = 'test';
+
+```
+
+**執行畫面**
+
+![image](./screenshots/6_1_index.PNG)
