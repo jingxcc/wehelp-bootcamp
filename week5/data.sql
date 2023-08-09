@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `message`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `message` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '獨立編號',
-  `member_id` bigint DEFAULT NULL COMMENT '留言者會員編號',
+  `member_id` bigint NOT NULL COMMENT '留言者會員編號',
   `content` varchar(255) NOT NULL COMMENT '留言內容',
   `like_count` int unsigned NOT NULL DEFAULT '0' COMMENT '按讚的數量',
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '留言時間',
