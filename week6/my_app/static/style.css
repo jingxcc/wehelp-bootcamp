@@ -1,0 +1,145 @@
+/* --- utils --- */
+
+.d-block {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+/* --- base --- */
+body {
+  font-size: 20px;
+  padding-bottom: 80px;
+  background-color: rgb(218, 242, 255);
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  /* outline: 1px solid orange; */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  /* responsive */
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: #fff;
+
+  @media (max-width: 1200px) {
+    width: 90%;
+  }
+}
+
+/* header */
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 40px;
+
+  background-color: #fff;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* --- main --- */
+
+/* auth  */
+.box {
+  width: 50%;
+  padding: 20px;
+
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
+}
+
+.box > * {
+  margin: 8px 0px;
+}
+
+.welcome,
+.page-title {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+label.policy-agree {
+  display: block;
+  margin: 8px 0px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid rgb(206, 206, 206);
+
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+label.policy-agree {
+  text-align: center;
+}
+
+.button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px 40px;
+  border: 1px solid rgb(206, 206, 206);
+  background-color: #e3e3e3;
+
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: rgb(206, 206, 206);
+  cursor: pointer;
+}

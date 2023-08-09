@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../../static/reset.css" />
+    <link rel="stylesheet" href="../../static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/" class="d-block">My Website</a></h1>
+    </header>
+    <div class="page-title">Squared Number Page</div>
+
+    <div class="container box text-center">
+      {% if result %}
+      <h2 class="text-center">{{result}}</h2>
+      {% endif %}
+    </div>
+  </body>
+</html>
