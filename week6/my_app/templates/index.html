@@ -6,7 +6,7 @@
     <title>My Website</title>
     <link rel="stylesheet" href="../static/reset.css" />
     <link rel="stylesheet" href="../static/style.css" />
-    <!-- <script defer src="../static/main.js"></script> -->
+    <script defer src="../static/main.js"></script>
   </head>
   <body>
     <header>
@@ -16,7 +16,12 @@
     <div class="welcome page-title">Welcome</div>
 
     <div class="container box mb-40">
-      <form action="/signup" method="post" name="signUp" onsubmit="">
+      <form
+        action="/signup"
+        method="post"
+        name="signUp"
+        onsubmit="return checkSignup()"
+      >
         <h2 class="text-center">Sign up</h2>
         <label for="name">Name</label>
         <input type="text" name="name" />
@@ -25,12 +30,16 @@
         <label for="password">Password</label>
         <input type="password" name="password" />
         <input class="button" type="submit" value="Sign up" />
-        <p>Session: {{session["SIGN-UP"]}}</p>
       </form>
     </div>
 
     <div class="container box mb-40">
-      <form action="/signin" method="post" name="signIn" onsubmit="">
+      <form
+        action="/signin"
+        method="post"
+        name="signIn"
+        onsubmit="return checkSignIn()"
+      >
         <h2 class="text-center">Sign In</h2>
         <label for="username">User Name</label>
         <input type="text" name="username" />
@@ -38,7 +47,7 @@
         <label for="password">Password</label>
         <input type="password" name="password" />
         <input class="button" type="submit" value="Sign In" />
-        <p>Session: {{session["SIGN-IN"]}}</p>
+        <p>Session: {{"member_id" in session}}</p>
       </form>
     </div>
   </body>

@@ -14,9 +14,24 @@
     </header>
     <div class="page-title">Member Page</div>
 
-    <div class="container box text-center">
+    <div class="container box text-center mb-40">
       <h2 class="text-center">{{session['name']}}, welcome to My Website !</h2>
       <a class="button" href="/signout">Sign Out</a>
+    </div>
+
+    <div class="container box mb-40">
+      <form action="/createMessage" method="post" name="createMessage">
+        <h2 class="text-center">Leave a Message</h2>
+        <label for="content">Content</label>
+        <input type="text" name="content" required />
+        <input class="button" type="submit" value="Send" />
+      </form>
+    </div>
+
+    <div class="container box mb-40">
+      {% for msg in messages %}
+      <p><span class="bold">{{msg[0]|e}}: </span>{{msg[1]|e}}</p>
+      {% endfor %}
     </div>
   </body>
 </html>
