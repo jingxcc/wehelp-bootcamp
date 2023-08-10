@@ -4,17 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Website</title>
-    <link rel="stylesheet" href="../static/reset.css" />
-    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../../static/reset.css" />
+    <link rel="stylesheet" href="../../static/style.css" />
   </head>
   <body>
     <header>
       <h1><a href="/" class="d-block">My Website</a></h1>
+      <nav><a href="/member">Member</a></nav>
     </header>
     <div class="page-title">Member Page</div>
 
     <div class="container box text-center">
-      <h2 class="text-center">Sign-in Success, welcome to My Website !</h2>
+      <h2 class="text-center">{{session['name']}}, welcome to My Website !</h2>
       <a class="button" href="/signout">Sign Out</a>
     </div>
   </body>

@@ -107,8 +107,7 @@ h2 {
 }
 
 input[type="text"],
-input[type="password"],
-label.policy-agree {
+input[type="password"] {
   display: block;
   margin: 8px 0px;
 }
@@ -121,10 +120,6 @@ input[type="password"] {
 
   font-size: 16px;
   border-radius: 4px;
-}
-
-label.policy-agree {
-  text-align: center;
 }
 
 .button {

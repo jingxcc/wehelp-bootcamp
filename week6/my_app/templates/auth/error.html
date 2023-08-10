@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Website</title>
-    <link rel="stylesheet" href="../static/reset.css" />
-    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../../static/reset.css" />
+    <link rel="stylesheet" href="../../static/style.css" />
   </head>
   <body>
     <header>
@@ -13,12 +13,13 @@
     </header>
     <div class="page-title">Sign-in Fails</div>
 
-    <div class="container box">
+    <div class="container box text-center">
       {% if msg %}
       <h2 class="text-center">{{msg}}</h2>
       {% else %}
       <h2 class="text-center">Undefined Error</h2>
       {% endif %}
+      <a class="button" href="/">Home Page</a>
     </div>
   </body>
 </html>

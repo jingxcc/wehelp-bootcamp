@@ -6,58 +6,41 @@
     <title>My Website</title>
     <link rel="stylesheet" href="../static/reset.css" />
     <link rel="stylesheet" href="../static/style.css" />
-    <script defer src="../static/main.js"></script>
+    <!-- <script defer src="../static/main.js"></script> -->
   </head>
   <body>
     <header>
       <h1><a href="/" class="d-block">My Website</a></h1>
+      <nav><a href="/member">Member</a></nav>
     </header>
     <div class="welcome page-title">Welcome</div>
 
     <div class="container box mb-40">
-      <form
-        action="/signin"
-        method="post"
-        name="signIn"
-        onsubmit="return checkAgreePolicy()"
-      >
+      <form action="/signup" method="post" name="signUp" onsubmit="">
+        <h2 class="text-center">Sign up</h2>
+        <label for="name">Name</label>
+        <input type="text" name="name" />
+        <label for="username">User Name</label>
+        <input type="text" name="username" />
+        <label for="password">Password</label>
+        <input type="password" name="password" />
+        <input class="button" type="submit" value="Sign up" />
+        <p>Session: {{session["SIGN-UP"]}}</p>
+      </form>
+    </div>
+
+    <div class="container box mb-40">
+      <form action="/signin" method="post" name="signIn" onsubmit="">
         <h2 class="text-center">Sign In</h2>
         <label for="username">User Name</label>
         <input type="text" name="username" />
         <!-- <input type="text" name="username" required /> -->
         <label for="password">Password</label>
         <input type="password" name="password" />
-        <label class="policy-agree">
-          <input type="checkbox" name="policy" />
-          Agree Policy
-        </label>
         <input class="button" type="submit" value="Sign In" />
         <p>Session: {{session["SIGN-IN"]}}</p>
       </form>
     </div>
-
-    <div class="container box">
-      <form name="square" onsubmit="redirectSquare(event)">
-        <h2 class="text-center">Calculation of Squares of Positive Integer</h2>
-        <label for="positiveInt">Positive Integer</label>
-        <input id="positiveInt" type="text" name="positiveInt" />
-        <input class="button" type="submit" value="Calculate" />
-      </form>
-    </div>
   </body>
-  <script>
-    const redirectSquare = (event) => {
-      event.preventDefault();
-      const positiveInt = document.getElementById("positiveInt");
-      const intValue = parseFloat(positiveInt.value);
-
-      if (intValue > 0 && Number.isInteger(intValue)) {
-        const rootUrl = window.location.origin;
-        let squareUrl = `${rootUrl}/square/${intValue}`;
-        window.location = squareUrl;
-      } else {
-        alert("Please enter a positive number !");
-      }
-    };
-  </script>
+  <script></script>
 </html>
