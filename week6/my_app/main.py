@@ -25,13 +25,14 @@ def signin():
     result = db_cursor.fetchall()
 
     if len(result) > 0:
-        session["member_id"] = result[0][0]
-        session["username"] = result[0][1]
-        session["name"] = result[0][2]
+        result = result[0]
+        session["member_id"] = result["id"]
+        session["username"] = result["username"]
+        session["name"] = result["name"]
 
         return redirect(url_for("member"))
     else:
-        [session.pop(key) for key in list(session.keys())]
+        session.clear()
 
         error_msg = "Username or password is not correct"
         return redirect(url_for("error", message=error_msg))
@@ -39,11 +40,9 @@ def signin():
 
 @app.route("/signup", methods=["POST"])
 def signup():
-    db_conn, db_cursor = db.connect_db()
     name = request.form["name"]
     username = request.form["username"]
     password = request.form["password"]
-    # print(type(name), type(username), type(password))
 
     sql = "SELECT username \
         FROM member \
@@ -64,21 +63,20 @@ def signup():
         db_conn.commit()
 
         print(db_cursor.rowcount, "record(s) was inserted.")
-        db.close_db(db_conn)
 
         return redirect(url_for("index"))
 
 
 @app.route("/signout")
 def signout():
-    [session.pop(key) for key in list(session.keys())]
+    session.clear()
     return redirect(url_for("index"))
 
 
 @app.route("/member")
 def member():
     if "member_id" in session:
-        messages = get_message()
+        messages = get_messages()
         return render_template("auth/member.html", messages=messages)
 
     return redirect(url_for("index"))
@@ -92,7 +90,6 @@ def error():
 
 @app.route("/createMessage", methods=["POST"])
 def create_message():
-    db_conn, db_cursor = db.connect_db()
     content = request.form["content"]
 
     sql = "INSERT INTO message (member_id, content) \
@@ -102,21 +99,36 @@ def create_message():
     db_conn.commit()
     print(db_cursor.rowcount, "record(s) was inserted.")
 
-    db.close_db(db_conn)
     return redirect(url_for("member"))
 
 
-def get_message():
-    db_conn, db_cursor = db.connect_db()
-    sql = "SELECT m.name, msg.content FROM \
+@app.route("/deleteMessage", methods=["POST"])
+def delete_message():
+    request_data = request.get_json()
+
+    if "msg_id" in request_data:
+        msg_id = int(request_data["msg_id"])
+
+        sql = "DELETE FROM message \
+            WHERE id = %s"
+        val = [(msg_id)]
+
+        db_cursor.execute(sql, val)
+        print(db_cursor.rowcount, "record(s) was deleted.")
+        db_conn.commit()
+
+        return redirect("/member")
+
+
+def get_messages():
+    sql = "SELECT m.name, msg.content, msg.member_id, msg.id FROM \
         message AS msg \
         LEFT JOIN member AS m ON msg.member_id = m.id \
         ORDER BY msg.time DESC, msg.id DESC"
     db_cursor.execute(sql)
-    result = db_cursor.fetchall()
-
-    db.close_db(db_conn)
-    return result
+    messages = db_cursor.fetchall()
+    print(messages)
+    return messages
 
 
 if __name__ == "__main__":

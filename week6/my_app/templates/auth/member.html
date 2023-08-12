@@ -29,9 +29,42 @@
     </div>
 
     <div class="container box mb-40">
-      {% for msg in messages %}
-      <p><span class="bold">{{msg[0]|e}}: </span>{{msg[1]|e}}</p>
-      {% endfor %}
+      <ul class="message-list">
+        {% for msg in messages %} {% if msg['member_id'] == session['member_id']
+        %}
+        <li data-msg-id="{{msg['id']}}">
+          <span class="bold">{{msg['name']|e}}: </span>{{msg['content']|e}}
+          <button onclick="confirmDelete(this)">x</button>
+        </li>
+        {% else %}
+        <li data-msg-id="{{msg['id']}}">
+          <span class="bold">{{msg['name']|e}}: </span>{{msg['content']|e}}
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
     </div>
   </body>
+  <script>
+    const confirmDelete = (button) => {
+      let isDelete = confirm("Are you sure to delete ?");
+      let list = button.closest("li");
+      let requestBody = { msg_id: list["dataset"]["msgId"] };
+      console.log(requestBody);
+      if (isDelete) {
+        fetch("/deleteMessage", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        })
+          .then((res) => {
+            window.location = res.url;
+          })
+          .catch((error) => {
+            console.error("Error", error);
+          });
+      }
+    };
+  </script>
 </html>

@@ -41,6 +41,11 @@ img {
   height: auto;
 }
 
+li {
+  list-style-type: none;
+  margin-bottom: 8px;
+}
+
 .container {
   width: 1200px;
   margin-left: auto;
