@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import redirect, render_template, url_for, request, session
+from flask import Flask, redirect, render_template, url_for, request, session
 import db
 
 app = Flask("__name__")
@@ -127,6 +126,27 @@ def delete_message():
             print("no right to delete.")
 
         return redirect("/member")
+
+
+@app.route("/api/member")
+def api_member():
+    username = request.args.get("username")
+
+    sql = "SELECT id, name, username FROM member \
+        WHERE username = %s"
+    val = (username,)
+    db_cursor.execute(sql, val)
+    result = db_cursor.fetchall()
+
+    response_data = {"data": {}}
+    if len(result) > 0:
+        response_data["data"]["id"] = result[0]["id"]
+        response_data["data"]["name"] = result[0]["name"]
+        response_data["data"]["username"] = result[0]["username"]
+    else:
+        response_data["data"] = None
+
+    return response_data
 
 
 def get_messages():
