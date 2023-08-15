@@ -47,7 +47,7 @@ def signup():
     sql = "SELECT username \
         FROM member \
         WHERE username = %s"
-    val = [(username)]
+    val = (username,)
     db_cursor.execute(sql, val)
     result = db_cursor.fetchall()
 
@@ -109,13 +109,22 @@ def delete_message():
     if "msg_id" in request_data:
         msg_id = int(request_data["msg_id"])
 
-        sql = "DELETE FROM message \
+        sql = "SELECT member_id FROM message \
             WHERE id = %s"
-        val = [(msg_id)]
-
+        val = (msg_id,)
         db_cursor.execute(sql, val)
-        print(db_cursor.rowcount, "record(s) was deleted.")
-        db_conn.commit()
+        result = db_cursor.fetchall()
+
+        if session["member_id"] == result[0]["member_id"]:
+            sql = "DELETE FROM message \
+                WHERE id = %s"
+            val = (msg_id,)
+
+            db_cursor.execute(sql, val)
+            print(db_cursor.rowcount, "record(s) was deleted.")
+            db_conn.commit()
+        else:
+            print("no right to delete.")
 
         return redirect("/member")
 
@@ -127,7 +136,7 @@ def get_messages():
         ORDER BY msg.time DESC, msg.id DESC"
     db_cursor.execute(sql)
     messages = db_cursor.fetchall()
-    print(messages)
+    # print(messages)
     return messages
 
 
