@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../../static/reset.css" />
+    <link rel="stylesheet" href="../../static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/" class="d-block">My Website</a></h1>
+      <nav><a href="/member">Member</a></nav>
+    </header>
+    <div class="page-title">Member Page</div>
+
+    <div class="container box text-center mb-40">
+      <h2 class="text-center">{{session['name']}}, welcome to My Website !</h2>
+      <a class="button" href="/signout">Sign Out</a>
+    </div>
+
+    <div class="container box mb-40">
+      <form action="/createMessage" method="post" name="createMessage">
+        <h2 class="text-center">Leave a Message</h2>
+        <label for="content">Content</label>
+        <input type="text" name="content" required />
+        <input class="button" type="submit" value="Send" />
+      </form>
+    </div>
+
+    <div class="container box mb-40">
+      <ul class="message-list">
+        {% for msg in messages %} {% if msg['member_id'] == session['member_id']
+        %}
+        <li data-msg-id="{{msg['id']}}">
+          <span class="bold">{{msg['name']|e}}: </span>{{msg['content']|e}}
+          <button onclick="confirmDelete(this)">x</button>
+        </li>
+        {% else %}
+        <li data-msg-id="{{msg['id']}}">
+          <span class="bold">{{msg['name']|e}}: </span>{{msg['content']|e}}
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+    </div>
+  </body>
+  <script>
+    const confirmDelete = (button) => {
+      let isDelete = confirm("Are you sure to delete ?");
+      let list = button.closest("li");
+      let requestBody = { msg_id: list["dataset"]["msgId"] };
+      console.log(requestBody);
+      if (isDelete) {
+        fetch("/deleteMessage", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        })
+          .then((res) => {
+            window.location = res.url;
+          })
+          .catch((error) => {
+            console.error("Error", error);
+          });
+      }
+    };
+  </script>
+</html>

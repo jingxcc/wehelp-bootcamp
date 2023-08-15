@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="../static/reset.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <script defer src="../static/main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/" class="d-block">My Website</a></h1>
+      <nav><a href="/member">Member</a></nav>
+    </header>
+    <div class="welcome page-title">Welcome</div>
+
+    <div class="container box mb-40">
+      <form
+        action="/signup"
+        method="post"
+        name="signUp"
+        onsubmit="return checkSignup()"
+      >
+        <h2 class="text-center">Sign up</h2>
+        <label for="name">Name</label>
+        <input type="text" name="name" />
+        <label for="username">User Name</label>
+        <input type="text" name="username" />
+        <label for="password">Password</label>
+        <input type="password" name="password" />
+        <input class="button" type="submit" value="Sign up" />
+      </form>
+    </div>
+
+    <div class="container box mb-40">
+      <form
+        action="/signin"
+        method="post"
+        name="signIn"
+        onsubmit="return checkSignIn()"
+      >
+        <h2 class="text-center">Sign In</h2>
+        <label for="username">User Name</label>
+        <input type="text" name="username" />
+        <!-- <input type="text" name="username" required /> -->
+        <label for="password">Password</label>
+        <input type="password" name="password" />
+        <input class="button" type="submit" value="Sign In" />
+        <p>Session: {{"member_id" in session}}</p>
+      </form>
+    </div>
+  </body>
+</html>
