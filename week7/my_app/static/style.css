@@ -16,6 +16,18 @@
   font-weight: bold;
 }
 
+.text-14 {
+  font-size: 14px;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-green {
+  color: green;
+}
+
 /* --- base --- */
 body {
   font-size: 20px;

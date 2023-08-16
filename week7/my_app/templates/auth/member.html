@@ -6,6 +6,7 @@
     <title>My Website</title>
     <link rel="stylesheet" href="../../static/reset.css" />
     <link rel="stylesheet" href="../../static/style.css" />
+    <script defer src="../../static/member.js"></script>
   </head>
   <body>
     <header>
@@ -15,8 +16,27 @@
     <div class="page-title">Member Page</div>
 
     <div class="container box text-center mb-40">
-      <h2 class="text-center">{{session['name']}}, welcome to My Website !</h2>
+      <h2 class="text-center">
+        <span id="memberName">{{session['name']}}</span>, welcome to My Website
+        !
+      </h2>
       <a class="button" href="/signout">Sign Out</a>
+    </div>
+
+    <div class="container box mb-40">
+      <h2 class="text-center">Search Member Name</h2>
+      <label for="username">Username</label>
+      <input id="searchNameInput" type="text" name="username" required />
+      <p id="searchNameResult" class="text-center"></p>
+      <button id="searchNameBtn" class="button">Search</button>
+    </div>
+
+    <div class="container box mb-40">
+      <h2 class="text-center">Update Name</h2>
+      <label for="name">Name</label>
+      <input id="updateNameInput" type="text" name="name" required />
+      <p id="updateNameResult" class="text-center text-14 color-green"></p>
+      <button id="updateNameBtn" class="button">Save</button>
     </div>
 
     <div class="container box mb-40">
@@ -49,7 +69,6 @@
       let isDelete = confirm("Are you sure to delete ?");
       let list = button.closest("li");
       let requestBody = { msg_id: list["dataset"]["msgId"] };
-      console.log(requestBody);
       if (isDelete) {
         fetch("/deleteMessage", {
           method: "POST",

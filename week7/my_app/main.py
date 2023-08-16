@@ -11,6 +11,12 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/error")
+def error():
+    msg = request.args.get("message")
+    return render_template("auth/error.html", msg=msg)
+
+
 @app.route("/signin", methods=["POST"])
 def signin():
     username = request.form["username"]
@@ -60,7 +66,6 @@ def signup():
 
         db_cursor.execute(sql, val)
         db_conn.commit()
-
         print(db_cursor.rowcount, "record(s) was inserted.")
 
         return redirect(url_for("index"))
@@ -79,12 +84,6 @@ def member():
         return render_template("auth/member.html", messages=messages)
 
     return redirect(url_for("index"))
-
-
-@app.route("/error")
-def error():
-    msg = request.args.get("message")
-    return render_template("auth/error.html", msg=msg)
 
 
 @app.route("/createMessage", methods=["POST"])
@@ -120,33 +119,58 @@ def delete_message():
             val = (msg_id,)
 
             db_cursor.execute(sql, val)
-            print(db_cursor.rowcount, "record(s) was deleted.")
             db_conn.commit()
+            print(db_cursor.rowcount, "record(s) was deleted.")
         else:
             print("no right to delete.")
 
         return redirect("/member")
 
 
-@app.route("/api/member")
+# tmp
+import json
+
+
+@app.route("/api/member", methods=["GET", "PATCH"])
 def api_member():
-    username = request.args.get("username")
+    if request.method == "GET":
+        username = request.args.get("username")
 
-    sql = "SELECT id, name, username FROM member \
-        WHERE username = %s"
-    val = (username,)
-    db_cursor.execute(sql, val)
-    result = db_cursor.fetchall()
+        sql = "SELECT id, name, username FROM member \
+            WHERE username = %s"
+        val = (username,)
+        db_cursor.execute(sql, val)
+        result = db_cursor.fetchall()
 
-    response_data = {"data": {}}
-    if len(result) > 0:
-        response_data["data"]["id"] = result[0]["id"]
-        response_data["data"]["name"] = result[0]["name"]
-        response_data["data"]["username"] = result[0]["username"]
-    else:
-        response_data["data"] = None
+        response_data = {"data": {}}
+        if len(result) > 0:
+            response_data["data"]["id"] = result[0]["id"]
+            response_data["data"]["name"] = result[0]["name"]
+            response_data["data"]["username"] = result[0]["username"]
+        else:
+            response_data["data"] = None
 
-    return response_data
+        return response_data
+
+    if request.method == "PATCH":
+        try:
+            request_body = json.loads(request.data)
+
+            sql = "UPDATE member SET name = %s \
+                WHERE id = %s"
+            val = (request_body["name"], session["member_id"])
+            db_cursor.execute(sql, val)
+            db_conn.commit()
+            print(db_cursor.rowcount, "record(s) was updated.")
+
+            session["name"] = request_body["name"]
+
+            response_data = {"ok": True}
+        except Exception:
+            response_data = {"error": True}
+
+        finally:
+            return response_data
 
 
 def get_messages():
