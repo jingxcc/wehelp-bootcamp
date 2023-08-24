@@ -1,8 +1,12 @@
 from flask import Blueprint, redirect, render_template, url_for, request, session
-import db
+from flask_cors import CORS
 import json
+import db
 
 member_bp = Blueprint("member_bp", __name__)
+cors = CORS(member_bp, resources={r"/api/*": {"origins": "*"}})
+
+
 db_conn, db_cursor = db.connect_db()
 
 
